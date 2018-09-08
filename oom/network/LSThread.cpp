@@ -129,13 +129,7 @@ bool LSThread::pingLinuxsampler()/*{{{*/
 	{
 		QString version(info->version);
 		qDebug("LSThread::pingLinuxsampler: Description: %s, Version: %s, Protocol Version: %s\n", info->description, info->version, info->protocol_version);
-		if(version.startsWith("1.0.0.svn"))
-			return true;
-		else
-		{
-			qDebug("LSThread::pingLinuxsampler: LinuxSampler started but incorrect Version tag: %s", info->version);
-			return false;
-		}
+		return true;
 	}
 	return true;
 }/*}}}*/
