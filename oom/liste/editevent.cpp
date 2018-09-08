@@ -639,13 +639,13 @@ EditCtrlDialog::EditCtrlDialog(int tick, const Event& event,
 				continue;
 		}
 		MidiController* c = port->midiController(num);
-		isList i = sList.begin();
-		for (; i != sList.end(); ++i)
+		isList ie = sList.begin();
+		for (; ie != sList.end(); ++ie)
 		{
-			if (*i == c->name())
+			if (*ie == c->name())
 				break;
 		}
-		if (i == sList.end())
+		if (ie == sList.end())
 			sList.push_back(c->name());
 	}
 	MidiController* mc = port->midiController(num);
