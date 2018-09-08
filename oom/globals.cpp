@@ -275,17 +275,6 @@ bool gSamplerStarted = false;
 
 void doSetuid()
       {
-#ifndef RTCAP
-      int status;
-#ifdef _POSIX_SAVED_IDS
-      status = seteuid (euid);
-#else
-      status = setreuid (ruid, euid);
-#endif
-      if (status < 0) {
-            perror("doSetuid: Couldn't set uid");
-            }
-#endif
       }
 
 //---------------------------------------------------------
@@ -295,19 +284,5 @@ void doSetuid()
 
 void undoSetuid()
       {
-#ifndef RTCAP
-      int status;
-
-#ifdef _POSIX_SAVED_IDS
-      status = seteuid (ruid);
-#else
-      status = setreuid (euid, ruid);
-#endif
-      if (status < 0) {
-            fprintf(stderr, "undoSetuid: Couldn't set uid (eff:%d,real:%d): %s\n",
-               euid, ruid, strerror(errno));
-            exit (status);
-            }
-#endif
       }
 
