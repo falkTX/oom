@@ -1094,8 +1094,18 @@ void Pipeline::updateGuis()
 
 static void loadPluginLib(QFileInfo* fi, const PluginType t)
 {
-    if (debugMsg)
-        qWarning("looking up %s", fi->filePath().toAscii().constData());
+    const QString lowerFilename = fi->baseName().toLower();
+    if (lowerFilename.contains("linuxsampler") ||
+        lowerFilename.contains("cabbage") ||
+        lowerFilename.contains(".lv2") ||
+        lowerFilename.contains("amsynth") ||
+        lowerFilename.contains("jackass") ||
+        lowerFilename.contains("dexed") ||
+        lowerFilename.contains("helm"))
+        return;
+
+    //if (debugMsg)
+    qWarning("looking up %s", fi->filePath().toAscii().constData());
 
     void* handle = lib_open(fi->filePath().toAscii().constData());
 	if (handle == 0)
